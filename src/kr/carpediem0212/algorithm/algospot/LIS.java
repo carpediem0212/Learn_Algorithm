@@ -18,36 +18,39 @@ public class LIS {
 		this.cache = new int[lengthOfElements];
  	}
 	
-	public void search() {
+	public int maxSequence() {
 		int max = 0;
 		
 		for(int i = 0; i < lengthOfElements; i++) {
-			int ref = getPermutation(i);
+			int ref = getLengthOfSequence(i);
+			
 			if(ref > max) {
 				max = ref;
 			}
 		}
 		
-		System.out.println(max);
+		return max;
 	}
 	
-	public int getPermutation(int index) {
+	public int getLengthOfSequence(int index) {
 		for(int i = (index + 1); i < lengthOfElements; i++) {
 			int ref = 1;
 			
 			if(elements[index] < elements[i]) {
 				if(cache[i] != 0) {
-					ref += cache[i];
+					ref += cache[i];	//이미 해당 숫자의 순열이 구해졌다면 별도 재귀호출을 하지않음.
 				} else {
-					ref += getPermutation(i);
+					ref += getLengthOfSequence(i);	//캐쉬에 저장된 값이 없다면 재귀 호출을 통해 증가 수열 계산
 				}
 				
 				if(ref > cache[index]) {
-					cache[index] = ref;
+					cache[index] = ref;	// 가장 큰 부분 순열에 자신을 포함한 길이를 저장
 				}
 			}
 		}
 		
+		//해당 인덱스를 기준으로 증가 수열 계산을 했는지 여부 판단을 위해 1로 변경
+		//0일 경우, 아직 계산하지 않은 인덱스
 		if(cache[index] == 0) {
 			cache[index] = 1;
 		}
@@ -77,7 +80,7 @@ public class LIS {
 				}
 				
 				LIS l = new LIS(elements);
-				l.search();
+				System.out.println(l.maxSequence());
 			}
 			
 		} catch (NumberFormatException e) {
