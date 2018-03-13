@@ -1,4 +1,4 @@
-package kr.hakin.algorithm.algospot;
+package kr.carpediem0212.algorithm.algospot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
