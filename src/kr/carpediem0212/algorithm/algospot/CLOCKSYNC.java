@@ -16,7 +16,7 @@ public class CLOCKSYNC {
 		for (int i = 0; i < inputData.length; i++) {
 			input[i] = Integer.parseInt(inputData[i].trim());
 		}
-
+		
 		sync(0, 0);
 
 		//minValue가 Integer가 가지는 MAX_VALUE와 같다는건 가능한 경우가 없다는 것.
