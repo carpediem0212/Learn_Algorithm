@@ -34,17 +34,17 @@ public class LIS {
 	
 	public int getLengthOfSequence(int index) {
 		for(int i = (index + 1); i < lengthOfElements; i++) {
-			int ref = 1;
+			int length = 1;
 			
 			if(elements[index] < elements[i]) {
 				if(cache[i] != 0) {
-					ref += cache[i];	//이미 해당 숫자의 순열이 구해졌다면 별도 재귀호출을 하지않음.
+					length += cache[i];	//이미 해당 숫자의 순열이 구해졌다면 별도 재귀호출을 하지않음.
 				} else {
-					ref += getLengthOfSequence(i);	//캐쉬에 저장된 값이 없다면 재귀 호출을 통해 증가 수열 계산
+					length += getLengthOfSequence(i);	//캐쉬에 저장된 값이 없다면 재귀 호출을 통해 증가 수열 계산
 				}
 				
-				if(ref > cache[index]) {
-					cache[index] = ref;	// 가장 큰 부분 순열에 자신을 포함한 길이를 저장
+				if(length > cache[index]) {
+					cache[index] = length;	// 가장 큰 부분 순열에 자신을 포함한 길이를 저장
 				}
 			}
 		}
@@ -57,7 +57,6 @@ public class LIS {
 
 		return cache[index];
 	}
-	
 	
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
