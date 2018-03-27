@@ -29,13 +29,13 @@ public class JUMPGAME {
 			return 1;
 		}
 		
-		//Memorization
+		 //Memorization
 		if(cache[y][x] != -1) {
 			return cache[y][x];
 		}
 		
 		int sizeOfJump = board[y][x];
-		
+		 
 		if((jump(y + sizeOfJump, x) > 0) || (jump(y, x + sizeOfJump) > 0)) {
 			cache[y][x] = 1;
 		} else {
